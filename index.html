@@ -20,6 +20,7 @@
 </head>
 
 <body>
+<div id="app">
     <!-- ##### Header Area Start ##### -->
     <header class="header-area">
 
@@ -919,9 +920,13 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
             </div>
         </div>
     </footer>
+</div>
+
     <!-- ##### Footer Area Start ##### -->
 
     <!-- ##### All Javascript Files ##### -->
+    <!-- Vue js -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <!-- jQuery-2.2.4 js -->
     <script src="js/jquery/jquery-2.2.4.min.js"></script>
     <!-- Popper js -->
@@ -932,6 +937,13 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     <script src="js/plugins/plugins.js"></script>
     <!-- Active js -->
     <script src="js/active.js"></script>
+
+    var app = new Vue({
+    el: '#app',
+    data: {
+    message: 'Hello Vue!'
+    }
+    })
 </body>
 
 </html>
