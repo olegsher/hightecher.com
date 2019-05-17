@@ -1,0 +1,82 @@
+<div class="card">
+  <div class="card-body">
+    <form [formGroup]="form">
+      <div class="form-group">
+        <label for="name">Name:</label>
+        <input id="name" type="text" class="form-control" formControlName="first_name">
+      </div>
+      <div *ngIf="first_name.touched && first_name.invalid">
+        <div class="alert alert-danger" *ngIf="first_name.errors.required">
+          Enter first name/username
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="surname">Surname:</label>
+        <input id="surname" type="text" class="form-control" formControlName="surname">
+      </div>
+      <div *ngIf="surname.touched && surname.invalid">
+        <div class="alert alert-danger" *ngIf="surname.errors.required">
+          Enter surname
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input id="email" type="email" class="form-control" formControlName="email">
+      </div>
+      <div *ngIf="email.touched && email.invalid">
+        <div class="alert alert-danger" *ngIf="email.errors.required">
+          Enter email
+        </div>
+        <div class="alert alert-danger" *ngIf="email.errors.email">
+          Wrong email pattern
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="phone">Phone:</label>
+        <input id="phone" type="text" class="form-control" formControlName="phone">
+      </div>
+      <div *ngIf="phone.touched && phone.invalid">
+        <div class="alert alert-danger" *ngIf="phone.errors.required">
+          Enter phone
+        </div>
+      </div>
+
+      <div formGroupName="passwords">
+        <div class="form-group">
+          <label for="password">Password:</label>
+          <input id="password" type="password" class="form-control" formControlName="password">
+        </div>
+        <div *ngIf="password.touched && password.invalid">
+          <div class="alert alert-danger" *ngIf="password.errors.required">
+            Enter password
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="password_confirmation">Confirm password:</label>
+          <input id="password_confirmation" type="password" class="form-control" formControlName="password_confirmation">
+
+        </div>
+        <div *ngIf="password_confirmation.touched && password_confirmation.invalid">
+          <div class="alert alert-danger" *ngIf="password_confirmation.errors.required">
+            Enter password confirmation
+          </div>
+        </div>
+
+      </div>
+
+
+      <div *ngIf="passwords.touched && passwords.invalid && password.valid && password_confirmation.valid">
+        <div class="alert alert-danger" *ngIf="passwords.errors.matchPassword">
+          Wrong confirmation
+        </div>
+      </div>
+
+      <button class="btn btn-success" (click)="submit()" [disabled]="!form.invalid">Submit</button>
+
+    </form>
+  </div>
+</div>

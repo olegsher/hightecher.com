@@ -1,0 +1,45 @@
+<div class="card">
+  <div class="card-body">
+    <form [formGroup]="form" *ngIf="!isLogIn">
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input id="email" type="email" class="form-control" formControlName="email">
+      </div>
+      <div *ngIf="email.touched && email.invalid">
+        <div class="alert alert-danger" *ngIf="email.errors.required">
+          Enter email
+        </div>
+        <div class="alert alert-danger" *ngIf="email.errors.email">
+          Wrong email pattern
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password:</label>
+        <input id="password" type="password" class="form-control" formControlName="password">
+      </div>
+      <div *ngIf="password.touched && password.invalid">
+        <div class="alert alert-danger" *ngIf="password.errors.required">
+          Enter password
+        </div>
+      </div>
+
+      <div class="alert alert-danger" *ngIf="isInvalidPassword">
+        Wrong pair email - password
+      </div>
+      <div class="alert alert-danger" *ngIf="isEmailNotFound">
+        Not existing email
+      </div>
+      <div class="alert alert-danger" *ngIf="isUserDisabled">
+        User disabled
+      </div>
+      <div class="alert alert-danger" *ngIf="isOtherError">
+        Something goes wrong, check internet connection or try later
+      </div>
+
+      <button class="btn btn-success" (click)="submit()" [disabled]="form.invalid">Submit</button>
+
+    </form>
+    <button class="btn btn-success" (click)="logout()" *ngIf="isLogIn">Logout</button>
+  </div>
+</div>
