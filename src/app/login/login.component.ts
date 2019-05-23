@@ -5,6 +5,7 @@ import {HttpClient} from '@angular/common/http';
 import {AuthService} from '../auth-service/auth-service.service';
 
 
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -27,10 +28,13 @@ export class LoginComponent implements OnInit {
     this.emailNotFound = false;
     this.userDisabled = false;
     this.otherError = false;
+    interface ReciveData{
+      idToken: string;
+    }
     this.authService.login(this.email.value, this.password.value)
       .subscribe(data => {
         // console.log(data);
-        localStorage.setItem('X-Firebase-Auth', data.idToken);
+        localStorage.setItem('X-Firebase-Auth', (data as ReciveData).idToken);
         this.form.reset();
       }, error => {
         // console.log(error.error.message);
