@@ -17,8 +17,8 @@ export class ConfirmPasswordValidator {
     const password = control.get('password');
     const passwordConfirmation = control.get('password_confirmation');
     return new Promise(resolve => {
-      console.log(control);
-      console.log(password);
+      // console.log(control);
+      // console.log(password);
 
       console.log(passwordConfirmation);
       if (password.value !== passwordConfirmation.value) {

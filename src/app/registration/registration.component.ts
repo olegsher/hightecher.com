@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {FormArray, FormControl, FormGroup, Validators} from '@angular/forms';
 import {ConfirmPasswordValidator} from './confirm-password-validator';
 import {AuthService} from '../auth-service/auth-service.service';
+import {ServerRequestsService} from '../server-requests/server-requests.service';
 
 @Component({
   selector: 'app-registration',
@@ -10,23 +11,31 @@ import {AuthService} from '../auth-service/auth-service.service';
 })
 export class RegistrationComponent implements OnInit {
   form = new FormGroup({
+    username: new FormControl('', Validators.required),
     first_name: new FormControl('', Validators.required),
     surname: new FormControl('', Validators.required),
     email: new FormControl('', [Validators.required, Validators.email]),
     phone: new FormControl('', Validators.required),
     passwords: new FormGroup({
-      password: new FormControl('', Validators.required),
+      password: new FormControl('', [Validators.required,
+        Validators.pattern('(?=^.{8,}$)(?=.*\\d)(?=.*\\W+)(?![.\\n])(?=.*[A-Z])(?=.*[a-z]).*$')]),
       password_confirmation: new FormControl('', Validators.required)
     }, [], ConfirmPasswordValidator.match)
   });
-  constructor(private authService: AuthService) { }
+  registrationSuccess = false;
+  constructor(private authService: AuthService, private serverRequest: ServerRequestsService) { }
 
   ngOnInit() {
   }
   submit() {
     console.log(this.form);
-    this.authService.registrate(this.email.value, this.password.value)
-      .subscribe(data => console.log(data), error => console.log(error));
+    this.serverRequest.registerUser(this.username.value, this.email.value, this.password.value, this.first_name.value,
+    this.surname.value, this.phone.value)
+      .subscribe(data => {
+        console.log(data);
+        this.registrationSuccess = true;
+        this.form.reset();
+      }, error => console.log(error));
   }
   get password_confirmation() {
     return this.form.get('passwords').get('password_confirmation');
@@ -48,5 +57,8 @@ export class RegistrationComponent implements OnInit {
   }
   get phone() {
     return this.form.get('phone');
+  }
+  get username() {
+    return this.form.get('username');
   }
 }

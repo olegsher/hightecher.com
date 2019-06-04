@@ -1,7 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {ConfirmPasswordValidator} from '../registration/confirm-password-validator';
-import {HttpClient} from '@angular/common/http';
 import {AuthService} from '../auth-service/auth-service.service';
 
 
@@ -21,6 +19,9 @@ export class LoginComponent implements OnInit {
   emailNotFound = false;
   userDisabled = false;
   otherError = false;
+
+  @Output() currentName = new EventEmitter<string>();
+
   ngOnInit() {
   }
   submit() {
@@ -28,32 +29,37 @@ export class LoginComponent implements OnInit {
     this.emailNotFound = false;
     this.userDisabled = false;
     this.otherError = false;
-    interface ReciveData{
+    interface ReciveFirebaseData{
       idToken: string;
     }
-    this.authService.login(this.email.value, this.password.value)
-      .subscribe(data => {
-        // console.log(data);
-        localStorage.setItem('X-Firebase-Auth', (data as ReciveData).idToken);
-        this.form.reset();
-      }, error => {
-        // console.log(error.error.message);
-        switch (error.error.error.message) {
-          case 'INVALID_PASSWORD':
-            this.invalidPassword = true;
-            break;
-          case 'EMAIL_NOT_FOUND':
-            this.emailNotFound = true;
-            break;
-          case 'USER_DISABLED':
-            this.userDisabled = true;
-            break;
-          default:
-            this.otherError = true;
-        }
-        // console.log(error);
-      });
 
+    interface ReciveServerData{
+      data: {
+        username: string
+      };
+    }
+    this.authService.login(this.email.value, this.password.value)
+      .then(data => {
+            localStorage.setItem('X-Firebase-Auth', ((data as any) as ReciveFirebaseData).idToken);
+
+            this.currentName.emit(this.email.value);
+            this.form.reset();
+          }, error => {
+            // console.log(error.error.message);
+            switch (error.error.error.message) {
+              case 'INVALID_PASSWORD':
+                this.invalidPassword = true;
+                break;
+              case 'EMAIL_NOT_FOUND':
+                this.emailNotFound = true;
+                break;
+              case 'USER_DISABLED':
+                this.userDisabled = true;
+                break;
+              default:
+                this.otherError = true;
+            }
+          });
   }
   get password() {
     return this.form.get('password');
