@@ -7,6 +7,11 @@ import {RouterModule} from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { NavigationComponent } from './navigation/navigation.component';
 import {HttpClientModule} from '@angular/common/http';
+import {AngularFireModule} from 'angularfire2';
+import {firebaseConfig} from '../environments/environment';
+import {AngularFireAuthModule} from 'angularfire2/auth';
+import {AngularFireDatabaseModule} from 'angularfire2/database';
+
 
 @NgModule({
   declarations: [
@@ -20,6 +25,9 @@ import {HttpClientModule} from '@angular/common/http';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFireAuthModule,
+    AngularFireDatabaseModule,
     RouterModule.forRoot([
       {
         path: 'registration',
