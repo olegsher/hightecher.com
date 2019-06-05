@@ -8,7 +8,7 @@ import { LoginComponent } from './login/login.component';
 import { NavigationComponent } from './navigation/navigation.component';
 import {HttpClientModule} from '@angular/common/http';
 import {AngularFireModule} from 'angularfire2';
-import {firebaseConfig} from '../environments/environment';
+import {environment} from '../environments/environment';
 import {AngularFireAuthModule} from 'angularfire2/auth';
 import {AngularFireDatabaseModule} from 'angularfire2/database';
 
@@ -25,7 +25,7 @@ import {AngularFireDatabaseModule} from 'angularfire2/database';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
     AngularFireDatabaseModule,
     RouterModule.forRoot([
