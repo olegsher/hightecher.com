@@ -3,16 +3,16 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
-};
-export const firebaseConfig = {
-  apiKey: 'AIzaSyCRvlEGovUviGm7WL3P4KpB-htf784sU_o',
-  // authDomain: 'hig-project-2061a.firebaseapp.com',
-  // databaseURL: 'https://hig-project-2061a.firebaseio.com',
-  // projectId: 'hig-project-2061a',
-  // storageBucket: 'hig-project-2061a.appspot.com',
-  // messagingSenderId: '759112626721',
-  // appId: '1:759112626721:web:8ead678eb5c0183f'
+  production: false,
+  firebaseConfig : {
+    apiKey: 'AIzaSyCRvlEGovUviGm7WL3P4KpB-htf784sU_o',
+    // authDomain: 'hig-project-2061a.firebaseapp.com',
+    // databaseURL: 'https://hig-project-2061a.firebaseio.com',
+    // projectId: 'hig-project-2061a',
+    // storageBucket: 'hig-project-2061a.appspot.com',
+    // messagingSenderId: '759112626721',
+    // appId: '1:759112626721:web:8ead678eb5c0183f'
+  }
 };
 /*
  * For easier debugging in development mode, you can import the following file
