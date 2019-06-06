@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   firebaseConfig : {
-    apiKey: 'AIzaSyCRvlEGovUviGm7WL3P4KpB-htf784sU_o',
+    apiKey: 'AIzaSyCRvlEGovUviGm7WL3P4KpB-htf784sU_o'
     // authDomain: 'hig-project-2061a.firebaseapp.com',
     // databaseURL: 'https://hig-project-2061a.firebaseio.com',
     // projectId: 'hig-project-2061a',
