@@ -20,8 +20,6 @@ export class LoginComponent implements OnInit {
   userDisabled = false;
   otherError = false;
 
-  @Output() currentName = new EventEmitter<string>();
-
   ngOnInit() {
   }
   submit() {
@@ -29,8 +27,9 @@ export class LoginComponent implements OnInit {
     this.emailNotFound = false;
     this.userDisabled = false;
     this.otherError = false;
-    interface ReciveFirebaseData{
-      idToken: string;
+    interface ReciveFirebaseData {
+      ra: string;
+      uid: string;
     }
 
     interface ReciveServerData{
@@ -40,26 +39,34 @@ export class LoginComponent implements OnInit {
     }
     this.authService.login(this.email.value, this.password.value)
       .then(data => {
-            localStorage.setItem('X-Firebase-Auth', ((data as any) as ReciveFirebaseData).idToken);
+        this.authService.getUserData().subscribe(userData => {
+          // console.log(userData);
 
-            this.currentName.emit(this.email.value);
-            this.form.reset();
-          }, error => {
-            // console.log(error.error.message);
-            switch (error.error.error.message) {
-              case 'INVALID_PASSWORD':
-                this.invalidPassword = true;
-                break;
-              case 'EMAIL_NOT_FOUND':
-                this.emailNotFound = true;
-                break;
-              case 'USER_DISABLED':
-                this.userDisabled = true;
-                break;
-              default:
-                this.otherError = true;
-            }
-          });
+          // @ts-ignore
+          localStorage.setItem('X-Firebase-Auth', (userData as ReciveFirebaseData).ra);
+          // @ts-ignore
+          localStorage.setItem('hig-uid', (userData as ReciveFirebaseData).uid);
+          // localStorage.setItem('hig-username', (userData as ReciveFirebaseData).????);
+        });
+        // localStorage.setItem('X-Firebase-Auth', (data as ReciveFirebaseData).idToken);
+
+        this.form.reset();
+      }, error => {
+        console.log(error);
+        switch (error.error.error.message) {
+          case 'INVALID_PASSWORD':
+            this.invalidPassword = true;
+            break;
+          case 'EMAIL_NOT_FOUND':
+            this.emailNotFound = true;
+            break;
+          case 'USER_DISABLED':
+            this.userDisabled = true;
+            break;
+          default:
+            this.otherError = true;
+        }
+      });
   }
   get password() {
     return this.form.get('password');
@@ -73,6 +80,8 @@ export class LoginComponent implements OnInit {
 
   logout() {
     localStorage.removeItem('X-Firebase-Auth');
+    localStorage.removeItem('hig-uid');
+    this.authService.logout();
   }
   get isInvalidPassword() {
     return this.invalidPassword;

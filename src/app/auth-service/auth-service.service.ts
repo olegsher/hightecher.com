@@ -8,7 +8,15 @@ import {AngularFireAuth} from 'angularfire2/auth';
 export class AuthService {
   constructor(private http: HttpClient, private fireAuth: AngularFireAuth) {
   }
-  public login(email: string, password: string){
+  public login(email: string, password: string) {
     return this.fireAuth.auth.signInWithEmailAndPassword(email, password);
+  }
+  public getUserData() {
+    console.log(this.fireAuth.auth.currentUser);
+    return this.fireAuth.user;
+  }
+  public logout() {
+    this.fireAuth.auth.signOut();
+    return true;
   }
 }
