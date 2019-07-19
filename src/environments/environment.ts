@@ -11,7 +11,7 @@ export const environment = {
     server: 'https://ht-users.herokuapp.com',
     registerUser: 'https://ht-users.herokuapp.com/',
     notificationTime: 'https://ht-users.herokuapp.com/user-data/notification/time',
-    name: 'https://ht-users.herokuapp.com/user-data/other',
+    name: 'https://ht-users.herokuapp.com/user-data/name',
     location: 'https://ht-users.herokuapp.com/user-data/location',
     notificationWays: 'https://ht-users.herokuapp.com/user-data/notification/ways',
     email: 'https://ht-users.herokuapp.com/user-data/email',

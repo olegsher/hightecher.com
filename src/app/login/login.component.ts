@@ -30,6 +30,7 @@ export class LoginComponent implements OnInit {
     interface ReciveFirebaseData {
       ra: string;
       uid: string;
+      refreshToken: string;
     }
 
     interface ReciveServerData{
@@ -44,6 +45,8 @@ export class LoginComponent implements OnInit {
 
           // @ts-ignore
           localStorage.setItem('X-Firebase-Auth', (userData as ReciveFirebaseData).ra);
+          // @ts-ignore
+          localStorage.setItem('refresh_token', (userData as ReciveFirebaseData).refreshToken);
           // @ts-ignore
           localStorage.setItem('hig-uid', (userData as ReciveFirebaseData).uid);
           // localStorage.setItem('hig-username', (userData as ReciveFirebaseData).????);

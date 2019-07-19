@@ -48,13 +48,15 @@ export class ServerRequestsService {
   }
   public setName(name) {
     const body = {
-      name
+      name,
+      surname: null
     };
     return this.http.post(this.urlChangeName, body);
   }
   public setSurname(surname) {
     const body = {
-      surname
+      surname,
+      name: null
     };
     return this.http.post(this.urlChangeName, body);
   }
