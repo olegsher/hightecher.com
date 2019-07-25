@@ -1,0 +1,52 @@
+<form [formGroup]="form" *ngIf="!isLogIn">
+
+  <div class="form-group">
+    <label for="name">Firstname:</label>
+    <input id="name" type="text" class="form-control" formControlName="first_name" (change)="changeName()">
+  </div>
+  <div *ngIf="userName.touched && userName.invalid">
+    <div class="alert alert-danger" *ngIf="userName.errors.required">
+      Enter first name
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="surname">Surname:</label>
+    <input id="surname" type="text" class="form-control" formControlName="surname"  (change)="changeSurname()">
+  </div>
+  <div *ngIf="surname.touched && surname.invalid">
+    <div class="alert alert-danger" *ngIf="surname.errors.required">
+      Enter surname
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="email">Email:</label>
+    <input id="email" type="email" class="form-control" formControlName="email" (change)="changeEmail()">
+  </div>
+  <div *ngIf="email.touched && email.invalid">
+    <div class="alert alert-danger" *ngIf="email.errors.required">
+      Enter email
+    </div>
+    <div class="alert alert-danger" *ngIf="email.errors.email">
+      Wrong email pattern
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="phone">Phone:</label>
+    <input id="phone" type="text" class="form-control" formControlName="phone" (change)="changePhone()">
+  </div>
+  <div *ngIf="phone.touched && phone.invalid">
+    <div class="alert alert-danger" *ngIf="phone.errors.required">
+      Enter phone
+    </div>
+
+    <div class="alert alert-danger" *ngIf="phone.errors.pattern">
+      Wrong phone pattern. Available patterns: +972-5XXXXXXX, +9725XXXXXXX, 05XXXXXXX.
+    </div>
+  </div>
+
+  <!--<button class="btn btn-success" (click)="submit()" [disabled]="form.invalid">Submit</button>-->
+
+</form>

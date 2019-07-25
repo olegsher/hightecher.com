@@ -7,14 +7,22 @@ import {AngularFireAuth} from 'angularfire2/auth';
 })
 export class AuthService {
   constructor(private http: HttpClient, private fireAuth: AngularFireAuth) {
+    console.log('!!!!!!');
+    fireAuth.user.subscribe(user => console.log(user));
+    fireAuth.auth.onIdTokenChanged(next => {
+      console.log('onIdTokenChanged');
+      next.getIdToken(true).then(a => {
+        console.log(a);
+        console.log(
+          fireAuth.auth.currentUser.getIdToken());
+      });
+    });
   }
-
 
   public login(email: string, password: string) {
     return this.fireAuth.auth.signInWithEmailAndPassword(email, password);
   }
   public getUserData() {
-    // console.log(this.fireAuth.auth.currentUser);
     return this.fireAuth.user;
   }
   public logout() {
@@ -24,7 +32,6 @@ export class AuthService {
   public getToken() {
     return this.fireAuth.auth.currentUser.getIdToken();
   }
-
 
   // public renewAuth() {
   //   const fireUrl = 'https://securetoken.googleapis.com/v1/token?key=';
