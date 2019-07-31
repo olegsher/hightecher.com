@@ -21,10 +21,11 @@ export class CabinetComponent implements OnInit, OnDestroy {
         this.cabinetData.downloadCabinetData();
         this.cabinetData.getCabinetData().subscribe(data => {
           this.subs = data;
-        });
+        })
       }
     });
   }
+
 
   ngOnDestroy(): void {
   }
