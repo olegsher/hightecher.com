@@ -28,6 +28,7 @@ export class AuthHeaderInterceptorService implements HttpInterceptor {
       return this.auth.getUserData().pipe(mergeMap(user => {
         // console.log('mM');
         // console.log(user.ra);
+        // @ts-ignore
         req = req.clone({headers: new HttpHeaders().append('X-Firebase-Auth', user.ra)});
         return next.handle(req);
       }));
