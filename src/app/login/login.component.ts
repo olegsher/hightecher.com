@@ -20,6 +20,7 @@ export class LoginComponent implements OnInit {
   userDisabled = false;
   otherError = false;
 
+
   ngOnInit() {
   }
   submit() {
@@ -27,10 +28,12 @@ export class LoginComponent implements OnInit {
     this.emailNotFound = false;
     this.userDisabled = false;
     this.otherError = false;
+
     interface ReciveFirebaseData {
       ra: string;
       uid: string;
       refreshToken: string;
+
     }
 
     interface ReciveServerData{
@@ -40,6 +43,7 @@ export class LoginComponent implements OnInit {
     }
     this.authService.login(this.email.value, this.password.value)
       .then(data => {
+
         this.authService.getUserData().subscribe(userData => {
           // console.log(userData);
 
@@ -70,6 +74,7 @@ export class LoginComponent implements OnInit {
             this.otherError = true;
         }
       });
+
   }
   get password() {
     return this.form.get('password');
@@ -83,8 +88,10 @@ export class LoginComponent implements OnInit {
 
   logout() {
     localStorage.removeItem('X-Firebase-Auth');
+
     localStorage.removeItem('hig-uid');
     this.authService.logout();
+
   }
   get isInvalidPassword() {
     return this.invalidPassword;

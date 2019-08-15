@@ -15,4 +15,7 @@ export const environment = {
     skills: 'https://ht-users.herokuapp.com/user-data/skills',
     profile: 'https://ht-users.herokuapp.com/user/profile'
   }
+
+  production: true
+
 };

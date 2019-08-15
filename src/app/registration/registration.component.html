@@ -54,9 +54,11 @@
           Enter phone
         </div>
 
+
         <div class="alert alert-danger" *ngIf="phone.errors.pattern">
           Wrong phone pattern. Available patterns: +972-5XXXXXXX, +9725XXXXXXX, 05XXXXXXX.
         </div>
+
       </div>
 
       <div formGroupName="passwords">

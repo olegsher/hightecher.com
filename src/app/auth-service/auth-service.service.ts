@@ -7,6 +7,7 @@ import {AngularFireAuth} from 'angularfire2/auth';
 })
 export class AuthService {
   constructor(private http: HttpClient, private fireAuth: AngularFireAuth) {
+
     console.log('!!!!!!');
     fireAuth.user.subscribe(user => console.log(user));
     fireAuth.auth.onIdTokenChanged(next => {
@@ -50,4 +51,5 @@ export class AuthService {
   //   const refreshToken = localStorage.getItem('refresh_token');
   //   return this.fireAuth.auth.signInWithCustomToken(refreshToken);
   // }
+
 }

@@ -12,6 +12,7 @@ import {ServerRequestsService} from '../server-requests/server-requests.service'
 export class RegistrationComponent implements OnInit {
   form = new FormGroup({
     username: new FormControl('', Validators.required),
+
     first_name: new FormControl(),
     surname: new FormControl(),
     email: new FormControl('', [Validators.required, Validators.email]),
@@ -19,6 +20,7 @@ export class RegistrationComponent implements OnInit {
     passwords: new FormGroup({
       password: new FormControl('', [Validators.required,
         Validators.pattern('(?=^.{8,}$)(?=.*\\d)(?![.\\n])(?=.*[A-Z])(?=.*[a-z]).*$')]),
+
       password_confirmation: new FormControl('', Validators.required)
     }, [], ConfirmPasswordValidator.match)
   });

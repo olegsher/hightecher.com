@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+
 import {NgModule} from '@angular/core';
 import { AppComponent } from './app.component';
 import { RegistrationComponent } from './registration/registration.component';
@@ -17,6 +18,7 @@ import {AuthHeaderInterceptorService} from './server-requests/auth-header-interc
 import { OtherComponent } from './cabinet/other/other.component';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,6 +28,7 @@ import { OtherComponent } from './cabinet/other/other.component';
     CabinetComponent,
     NotificationTimeComponent,
     OtherComponent
+
   ],
   imports: [
     BrowserModule,
@@ -43,6 +46,7 @@ import { OtherComponent } from './cabinet/other/other.component';
       {
         path: 'login',
         component: LoginComponent
+
       },
       {
         path: 'cabinet',
@@ -56,6 +60,7 @@ import { OtherComponent } from './cabinet/other/other.component';
       useClass: AuthHeaderInterceptorService,
       multi: true
     }],
+
   bootstrap: [AppComponent]
 })
 export class AppModule { }
