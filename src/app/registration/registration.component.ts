@@ -12,13 +12,15 @@ import {ServerRequestsService} from '../server-requests/server-requests.service'
 export class RegistrationComponent implements OnInit {
   form = new FormGroup({
     username: new FormControl('', Validators.required),
-    first_name: new FormControl('', Validators.required),
-    surname: new FormControl('', Validators.required),
+
+    first_name: new FormControl(),
+    surname: new FormControl(),
     email: new FormControl('', [Validators.required, Validators.email]),
-    phone: new FormControl('', Validators.required),
+    phone: new FormControl('', [Validators.pattern('(\\+972-5)|(\\+9725)|(05.)\\d{7}')]),
     passwords: new FormGroup({
       password: new FormControl('', [Validators.required,
-        Validators.pattern('(?=^.{8,}$)(?=.*\\d)(?=.*\\W+)(?![.\\n])(?=.*[A-Z])(?=.*[a-z]).*$')]),
+        Validators.pattern('(?=^.{8,}$)(?=.*\\d)(?![.\\n])(?=.*[A-Z])(?=.*[a-z]).*$')]),
+
       password_confirmation: new FormControl('', Validators.required)
     }, [], ConfirmPasswordValidator.match)
   });

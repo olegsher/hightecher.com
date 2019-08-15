@@ -1,0 +1,64 @@
+<div class="card">
+  <div class="card-body" *ngIf="(getUser()| async) !== null">
+    <app-other></app-other>
+    <app-notification-time></app-notification-time>
+  </div>
+  <div class="card-body" *ngIf="(getUser()| async) === null">
+    Log in first
+  </div>
+</div>
+
+
+<!--POST-->
+<!--/user-data/email-->
+<!--updateEmail-->
++
+
+<!--POST-->
+<!--/user-data/hiring-region-->
+<!--addHiringRegion-->
+-
+
+<!--POST-->
+<!--/user-data/location-->
+<!--setHomeLocation-->
+
+<!--POST-->
+<!--/user-data/name-->
+<!--updateNameAndSurname-->
+
+<!--POST-->
+<!--/user-data/notification/time-->
+<!--setNotificationTime-->
+
+<!--GET-->
+<!--/user-data/notification/ways-->
+<!--getNotificationWays-->
+
+<!--POST-->
+<!--/user-data/notification/ways-->
+<!--setNotificationWays-->
+
+<!--POST-->
+<!--/user-data/phone-->
+<!--updatePhone-->
+
+<!--DELETE-->
+<!--/user-data/skill/{id}-->
+<!--deleteUsersSkill-->
+
+<!--GET-->
+<!--/user-data/skills-->
+<!--getUsersSkills-->
+
+<!--POST-->
+<!--/user-data/skills-->
+<!--addUsersSkill-->
+
+<!--POST-->
+<!--/user-data/status/-->
+<!--changeStatusAccount-->
+
+<!--POST-->
+<!--/user/profile-->
+<!--getUserProfileBy-->
