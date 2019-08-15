@@ -8,7 +8,6 @@ import {AngularFireAuth} from 'angularfire2/auth';
 export class AuthService {
   constructor(private http: HttpClient, private fireAuth: AngularFireAuth) {
 
-    console.log('!!!!!!');
     fireAuth.user.subscribe(user => console.log(user));
     fireAuth.auth.onIdTokenChanged(next => {
       console.log('onIdTokenChanged');
@@ -34,22 +33,5 @@ export class AuthService {
     return this.fireAuth.auth.currentUser.getIdToken();
   }
 
-  // public renewAuth() {
-  //   const fireUrl = 'https://securetoken.googleapis.com/v1/token?key=';
-  //   const fireKey = environment.firebaseConfig.apiKey;
-  //   const url = fireUrl + fireKey;
-  //   const refreshToken = localStorage.getItem('refresh_token');
-  //   const body = {
-  //     grant_type: 'refresh_token',
-  //     refresh_token: refreshToken
-  //   };
-  //   return this.http.post(url, body);
-  // }
-  //
-  // public loginWithIdToken() {
-  //
-  //   const refreshToken = localStorage.getItem('refresh_token');
-  //   return this.fireAuth.auth.signInWithCustomToken(refreshToken);
-  // }
 
 }
